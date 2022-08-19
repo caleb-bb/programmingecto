@@ -18,6 +18,10 @@ defmodule MusicDB.Repo do
   def count(table) do
     aggregate(table, :count, :id)
   end
+ 
+  def init(_, opts) do
+    {:ok, Keyword.put(opts, :url, System.get_env("DATABASE_URL"))}
+  end
 
 end
 
